@@ -1,9 +1,7 @@
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { join } from 'path';
 import { User } from 'domains/user';
-import { Todo } from 'domains/todo';
 
 type DatabaseConfig = {
   DB_PORT: number;
@@ -26,7 +24,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       username: service.get("DB_USER"),
       password: service.get("DB_PASS"),
       database: service.get("DB_NAME"),
-      entities: [User, Todo],
+      entities: [User],
       synchronize: false,
     }
   }

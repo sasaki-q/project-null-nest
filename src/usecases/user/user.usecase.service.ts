@@ -8,7 +8,7 @@ export class UserUsecaseService {
         private readonly repository: MyRepository<User>
     ){}
 
-    async getAll(): Promise<Array<User>> {
-        return await this.repository.getAll();
+    async create(user: User): Promise<User> {
+        return await this.repository.create(user);
     }
 }

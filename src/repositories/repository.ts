@@ -1,3 +1,3 @@
 export abstract class MyRepository<T> {
-    abstract getAll: () => Promise<Array<T>>;
+    abstract create: (data: T) => Promise<T>;
 }

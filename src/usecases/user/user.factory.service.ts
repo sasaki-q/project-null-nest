@@ -6,11 +6,8 @@ import { CreateUserDto } from "dtos/user";
 export class UserFactoryService {
     create(dto: CreateUserDto): User {
         const user = new User();
-        user.age = dto.age;
-        user.name = dto.name;
-        user.role = dto.role;
-        user.email = String(dto.email);
-        user.password = dto.password;
+        user.thirdpartyUid = dto.thirdpartyUid;
+        user.email = dto.email.toString();
         return user;
     }
 }

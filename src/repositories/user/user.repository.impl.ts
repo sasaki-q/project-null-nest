@@ -9,7 +9,7 @@ export class UserRepositoryImpl implements MyRepository<User> {
         private readonly repository: Repository<User>
     ){}
 
-    async getAll(): Promise<User[]> {
-        return await this.repository.find();
+    async create(data: User): Promise<User> {
+        return await this.repository.save(data);
     }
 }

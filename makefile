@@ -8,4 +8,4 @@ up:
 
 rm:
 	echo "rm"
-	docker rm nest_api_container
+	docker rm template-api
