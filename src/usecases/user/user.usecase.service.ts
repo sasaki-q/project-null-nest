@@ -8,6 +8,10 @@ export class UserUsecaseService {
         private readonly repository: MyRepository<User>
     ){}
 
+    async get(email: string):Promise<User | null> {
+        return await this.repository.get(email);
+    }
+ 
     async create(user: User): Promise<User> {
         return await this.repository.create(user);
     }

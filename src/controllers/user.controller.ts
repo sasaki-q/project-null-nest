@@ -1,5 +1,4 @@
-import { Body, Controller, Get, InternalServerErrorException, Post } from "@nestjs/common";
-import { User } from "domains/user";
+import { Body, Controller, InternalServerErrorException, Post } from "@nestjs/common";
 import { CreateUserDto } from "dtos/user";
 import { UserFactoryService, UserUsecaseService } from "usecases/user";
 
@@ -10,10 +9,14 @@ export class UserController {
         private readonly userUsecase: UserUsecaseService,
     ){}
 
-    @Post("/auth")
+    @Post("/create")
     async createUser(@Body() dto : CreateUserDto): Promise<any> {
         try{
-            const createdUser: User = this.userFactory.create(dto)
+            const existedUser = await this.userUsecase.get(dto.email.toString());
+
+            if(existedUser) return existedUser;
+
+            const createdUser = this.userFactory.create(dto)
             const res = await this.userUsecase.create(createdUser)
 
             return res;

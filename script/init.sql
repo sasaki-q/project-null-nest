@@ -1,7 +1,7 @@
 CREATE TABLE users (
   id        	SERIAL PRIMARY KEY,
   thirdparty_uid      	VARCHAR(100) NOT NULL,
-  email       	INT NOT NULL,
+  email       	VARCHAR(100) NOT NULL,
   created_at 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
