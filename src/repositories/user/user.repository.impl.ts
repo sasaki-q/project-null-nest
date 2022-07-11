@@ -9,8 +9,8 @@ export class UserRepositoryImpl implements MyRepository<User> {
         private readonly repository: Repository<User>
     ){}
 
-    async get(email: string): Promise<User | null> {
-        return await this.repository.findOne({where: {"email": email}})
+    async get(sub: string): Promise<User | null> {
+        return await this.repository.findOne({where: {"thirdpartyUid": sub}})
     }
 
     async create(data: User): Promise<User> {

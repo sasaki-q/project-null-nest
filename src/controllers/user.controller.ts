@@ -14,7 +14,8 @@ export class UserController {
     @Get("/")
     async getUser(@IdDecorator() id: string): Promise<User> {
         try{
-            return new User()
+            const user = await this.userUsecase.get(id);
+            return user
         }catch(err){
             console.log("DEBUG error message === ", err)
             return err
@@ -22,9 +23,12 @@ export class UserController {
     }
 
     @Post("/create")
-    async createUser(@Body() dto : CreateUserDto): Promise<any> {
+    async createUser(
+        @IdDecorator() id: string,
+        @Body() dto : CreateUserDto
+    ): Promise<any> {
         try{
-            const existedUser = await this.userUsecase.get(dto.email.toString());
+            const existedUser = await this.userUsecase.get(id);
 
             if(existedUser) return existedUser;
 

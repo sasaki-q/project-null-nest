@@ -23,7 +23,9 @@ export class MyGuard implements CanActivate {
 
     try {
         const payload = await verifier.verify(token);
+
         request[process.env.CUSTOM_PROPERTY] = payload.sub;
+        
         return true;
     }catch(err) {
         console.log("DEBUG error message === ", err)
