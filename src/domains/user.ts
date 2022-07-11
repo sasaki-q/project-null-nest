@@ -11,6 +11,12 @@ export class User {
     @Column()
     email: string
 
+    @Column({name: "profile_image_url"})
+    profileImageUrl: string
+
+    @Column({name: "self_introduction"})
+    selfIntroduction: string
+
     @CreateDateColumn({name: "created_at",type: 'timestamp', precision: 0, default: Date.now() })
     readonly createdAt: Date
 }
