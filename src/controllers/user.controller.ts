@@ -1,4 +1,4 @@
-import { Body, Controller, Get, InternalServerErrorException, Post } from "@nestjs/common";
+import { Body, Controller, Get, InternalServerErrorException, Param, Post, Put, Query } from "@nestjs/common";
 import { IdDecorator } from "common/decorator.service";
 import { User } from "domains/user";
 import { CreateUserDto } from "dtos/user";
@@ -15,7 +15,27 @@ export class UserController {
     async getUser(@IdDecorator() id: string): Promise<User> {
         try{
             const user = await this.userUsecase.get(id);
+
+            if(user.profileImageUrl) {
+                return this.userFactory.createSignedUrl(user.profileImageUrl, user);
+            }
+
             return user
+        }catch(err){
+            console.log("DEBUG error message === ", err)
+            return err
+        }
+    }
+
+    @Put("/")
+    async putImagePath(@IdDecorator() id: string, @Query("path") path: string): Promise<User> {
+        try{
+            const user = await this.userUsecase.get(id);
+            user.profileImageUrl = path;
+
+            await this.userUsecase.create(user);
+
+            return this.userFactory.createSignedUrl(path, user);
         }catch(err){
             console.log("DEBUG error message === ", err)
             return err
