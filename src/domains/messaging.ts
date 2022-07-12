@@ -11,7 +11,11 @@ export class Messaging {
     @Column({name: "to_uid"})
     toUid: number
 
-    @Column({type: "enum", default: "text"})
+    @Column({
+        type: 'enum',
+        enum: ["text", "image"],
+        default: "text",
+    })
     type: "text" | "image"
 
     @Column()

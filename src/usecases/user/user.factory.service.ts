@@ -24,8 +24,6 @@ export class UserFactoryService {
           
         user.profileImageUrl = signedUrl;
 
-        console.log(signedUrl)
-
         return user;
     }
 }

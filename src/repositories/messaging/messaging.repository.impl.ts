@@ -15,6 +15,10 @@ export class MessagingRepositoryImpl implements MyRepository<Messaging> {
         return await this.repository.findOne({where: {"id": e as number}});
     }
 
+    async getAll():Promise<Messaging[]> {
+        return await this.repository.find()
+    }
+
     async create(data: Messaging): Promise<Messaging> {
         return await this.repository.save(data);
     }

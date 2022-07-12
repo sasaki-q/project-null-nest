@@ -12,7 +12,7 @@ export class UserController {
     ){}
 
     @Get("/")
-    async getUser(@IdDecorator() id: string): Promise<User> {
+    async get(@IdDecorator() id: string): Promise<User> {
         try{
             const user = await this.userUsecase.get(id);
 
@@ -25,6 +25,12 @@ export class UserController {
             console.log("DEBUG error message === ", err)
             return err
         }
+    }
+
+    @Get("/all")
+    async getAll(@IdDecorator() id: string): Promise<Array<User>> {
+        const _res = await this.userUsecase.getAll();
+        return _res;
     }
 
     @Put("/")
@@ -43,10 +49,7 @@ export class UserController {
     }
 
     @Post("/create")
-    async createUser(
-        @IdDecorator() id: string,
-        @Body() dto : CreateUserDto
-    ): Promise<any> {
+    async create(@IdDecorator() id: string, @Body() dto : CreateUserDto): Promise<any> {
         try{
             const existedUser = await this.userUsecase.get(id);
 
