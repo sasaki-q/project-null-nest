@@ -1,8 +1,12 @@
-import { Body, Controller, Get, InternalServerErrorException, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Get, InternalServerErrorException, Post, Put, Query } from "@nestjs/common";
 import { IdDecorator } from "common/decorator.service";
 import { User } from "domains/user";
 import { CreateUserDto } from "dtos/user";
 import { UserFactoryService, UserUsecaseService } from "usecases/user";
+
+type Return = {
+    "data": User[]
+}
 
 @Controller("/user")
 export class UserController {
@@ -28,9 +32,10 @@ export class UserController {
     }
 
     @Get("/all")
-    async getAll(@IdDecorator() id: string): Promise<Array<User>> {
-        const _res = await this.userUsecase.getAll();
-        return _res;
+    async getAll(@IdDecorator() id: string): Promise<{"data": User[]}> {
+        const res = await this.userUsecase.getAll();
+
+        return {"data": res.map((e) => this.userFactory.createSignedUrl(e.profileImageUrl, e))};
     }
 
     @Put("/")

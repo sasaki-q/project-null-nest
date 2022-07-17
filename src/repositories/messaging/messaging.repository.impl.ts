@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Messaging } from "domains/messaging";
+import { GetMessagingDto } from "dtos/messaging";
 import { MyRepository } from "repositories/repository";
 import { Repository } from "typeorm";
 
@@ -23,13 +24,12 @@ export class MessagingRepositoryImpl implements MyRepository<Messaging> {
         return await this.repository.save(data);
     }
 
-    async getMessaging(fromUid: number, toUid: number): Promise<Messaging[]>{
+    async getMessaging(dto: GetMessagingDto): Promise<Messaging[]>{
         return await this.repository.find({
             where: {
-                fromUid: fromUid,
-                toUid: toUid,
-            },
-            relations: ["user"],
+                fromUid: dto.fromUid,
+                toUid: dto.toUid,
+            }
         });
     };
 }
