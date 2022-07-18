@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Messaging } from "domains/messaging";
-import { CreateMessageDto, GetMessagingDto } from "dtos/messaging";
-import { MessagingRepositoryModule } from "repositories/messaging";
+import { GetMessagingDto } from "dtos/messaging";
 import { MyRepository } from "repositories/repository";
 
 @Injectable()

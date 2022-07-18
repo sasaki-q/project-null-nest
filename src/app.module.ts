@@ -5,6 +5,8 @@ import { TypeOrmConfigService } from 'config/orm';
 import { AppController } from './app.controller';
 import { UserController } from 'controllers/user.controller';
 import { UserUsecaseModule } from 'usecases/user';
+import { MessagingUsecaseModule } from 'usecases/messaging/messaging.usecase.module';
+import { MessagingGateway } from 'gateways/messaging.gateway';
 
 @Module({
   imports: [
@@ -16,9 +18,10 @@ import { UserUsecaseModule } from 'usecases/user';
       useClass: TypeOrmConfigService,
     }),
     UserUsecaseModule,
+    MessagingUsecaseModule,
   ],
   controllers: [AppController, UserController],
-  providers: [],
+  providers: [MessagingGateway],
 })
 
 export class AppModule {}
