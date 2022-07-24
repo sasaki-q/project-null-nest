@@ -2,8 +2,8 @@ version: "3"
 
 services:
   
-  template-api:
-    container_name: "template-api"
+  template:
+    container_name: "template"
     build: .
     tty: true
     ports:

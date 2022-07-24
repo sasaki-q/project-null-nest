@@ -29,7 +29,8 @@ export class MessagingRepositoryImpl implements MyRepository<Messaging> {
             where: {
                 fromUid: dto.fromUid,
                 toUid: dto.toUid,
-            }
+            },
+            order: { "createdAt": "DESC" }
         });
     };
 }
