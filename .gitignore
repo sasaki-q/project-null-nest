@@ -37,3 +37,4 @@ lerna-debug.log*
 .vscode
 key.pem
 pg-data
+dockerfile

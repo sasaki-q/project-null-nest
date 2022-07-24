@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { User } from "domains/user";
 import { CreateUserDto } from "dtos/user";
 import { getSignedUrl } from 'aws-cloudfront-sign'
-import * as fs from "fs"
 
 @Injectable()
 export class UserFactoryService {

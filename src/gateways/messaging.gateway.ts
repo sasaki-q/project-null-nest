@@ -1,6 +1,5 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { NestGateway } from '@nestjs/websockets/interfaces/nest-gateway.interface';
-import { Messaging } from 'domains/messaging';
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
